@@ -10,14 +10,14 @@ use App\Models\Blog;
 class BlogController extends Controller {
     public  function index() {
         return view('blogs', [
-            'tittle' => "blogs",
+            'tittle' => "Blogs",
             'blogs' => Blog::all()
         ]);
     }
 
     public function show(blog $blog) {
         return view('blog', [
-            'tittle' => "single Blog",
+            'tittle' => "single Blogs",
             'blog' => $blog
             ]);
     }
