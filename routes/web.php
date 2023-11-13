@@ -17,12 +17,12 @@ use App\Http\Controllers\BlogController;
 
 Route::get('/', function () {
     return view('home', [
-        "judul" => "Home"
+        "tittle" => "Home"
     ]);
 });
 Route::get('/about', function () {
     return view('about', [
-        "judul" => "About",
+        "tittle" => "About",
         "nama" => "Faqih Firdaus Kemal Pangestu",
         "email" => "FaqihFirdaus@gmail.com",
         "gambar" => "hiiqaff.jpg"
@@ -30,5 +30,5 @@ Route::get('/about', function () {
 });
 
 Route::get('/blogs', [BlogController::class, 'index']);
-Route::get('blogs/{slug}', [BlogController::class, 'show']);
+Route::get('blogs/{blog:slug}', [BlogController::class, 'show']);
 
