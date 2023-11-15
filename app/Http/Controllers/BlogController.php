@@ -10,8 +10,9 @@ use App\Models\Blog;
 class BlogController extends Controller {
     public  function index() {
         return view('blogs', [
-            'tittle' => "Blogs",
-            'blogs' => Blog::all()
+            'tittle' => "All Blogs",
+            // 'blogs' => Blog::all()
+            'blogs' => Blog::with(['author', 'category'])->latest()->get()
         ]);
     }
 

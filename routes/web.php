@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 
 use App\Models\Category;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,10 +43,17 @@ Route::get('/categories', function() {
 });
 
 Route::get('/categories/{category:slug}', function(Category $category) {
-    return view('category', [
-        'tittle' => $category->name,
-        'blogs' => $category->blogs,
-        'category' => $category->name
+    return view('blogs', [
+        'tittle' => "Blog By Category : $category->name",
+        'blogs' => $category->blogs->load('category', 'author'),
     ]);
 });
+
+Route::get('/authors/{author:username}', function(User $author) {
+    return view('blogs', [
+        'tittle' =>"Blog By Author : $author->name",
+        'blogs' => $author->blogs->load('category', 'author'),
+    ]);
+});
+
 
