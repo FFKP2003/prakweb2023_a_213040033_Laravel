@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminCategoryController;
 use App\Models\Category;
 
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,8 @@ Route::get('/dashboard',  function() {
     return view('dashboard.index');
 })->middleware('auth');
 
-route::resource('/dashboard/blogs', DashboardBlogController::class)->middleware('auth');
+Route::get('/dashboard/blogs/checkSlug',[DashboardBlogController::class, 'checkSlug'])-> middleware('auth');
+Route::resource('/dashboard/blogs', DashboardBlogController::class)->middleware('auth');
 
+Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
